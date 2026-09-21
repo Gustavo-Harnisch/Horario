@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "activo": true,
+    "asignatura": "INF-423 Inteligencia Artificial S1",
+    "dia": "Viernes",
+    "horaInicio": "13:10",
+    "horaFin": "15:30",
+    "sala": "D-210",
+    "fechaInicio": "2026-09-04",
+    "fechaFin": "2026-10-16",
+    "motivo": "Cambio informado por Escuela de Ingeniería Civil Informática"
+  }
+]

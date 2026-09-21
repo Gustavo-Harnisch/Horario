@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Favicon (PC y navegadores en general) -->
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+
+    <!-- iOS (pantalla de inicio) -->
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+
+    <!-- Logo genérico si lo quieres usar en OpenGraph / redes -->
+    <meta property="og:image" content="assets/logo.png" />
+
+    <title>Mi Horario</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <h1 class="page-title">Mi horario universitario</h1>
+      <button
+        class="temporary-manager-button"
+        id="open-temporary-dialog"
+        type="button"
+        aria-haspopup="dialog"
+      >
+        🔄 Cambios Temporales
+      </button>
+    </header>
+
+    <section class="horario" id="horario"></section>
+
+    <dialog
+      class="temporary-dialog"
+      id="temporary-dialog"
+      aria-labelledby="temporary-dialog-title"
+    >
+      <div class="temporary-dialog-header">
+        <div>
+          <p class="dialog-eyebrow">Excepciones del horario base</p>
+          <h2 id="temporary-dialog-title">🔄 Cambios Temporales</h2>
+        </div>
+        <button
+          class="icon-button"
+          id="close-temporary-dialog"
+          type="button"
+          aria-label="Cerrar cambios temporales"
+        >
+          ×
+        </button>
+      </div>
+
+      <p class="temporary-description">
+        Los cambios vigentes reemplazan visualmente las clases que se
+        superponen. El horario CSV original se conserva intacto.
+      </p>
+
+      <div class="temporary-toolbar">
+        <p
+          class="temporary-summary"
+          id="temporary-summary"
+          aria-live="polite"
+        ></p>
+        <button class="primary-button" id="add-temporary-change" type="button">
+          + Agregar cambio
+        </button>
+      </div>
+      <div class="temporary-list" id="temporary-list"></div>
+
+      <form class="temporary-form" id="temporary-form" hidden>
+        <input name="id" type="hidden" />
+        <h3 id="temporary-form-title">Nuevo cambio temporal</h3>
+        <div class="form-grid">
+          <label class="form-field form-field-wide">
+            <span>Asignatura</span>
+            <input name="asignatura" type="text" required maxlength="120" />
+          </label>
+          <label class="form-field">
+            <span>Día</span>
+            <select name="dia" required>
+              <option>Lunes</option>
+              <option>Martes</option>
+              <option>Miércoles</option>
+              <option>Jueves</option>
+              <option>Viernes</option>
+            </select>
+          </label>
+          <label class="form-field">
+            <span>Sala</span>
+            <input name="sala" type="text" required maxlength="60" />
+          </label>
+          <label class="form-field"
+            ><span>Hora de inicio</span
+            ><input name="horaInicio" type="time" required
+          /></label>
+          <label class="form-field"
+            ><span>Hora de término</span
+            ><input name="horaFin" type="time" required
+          /></label>
+          <label class="form-field"
+            ><span>Desde</span><input name="fechaInicio" type="date" required
+          /></label>
+          <label class="form-field"
+            ><span>Hasta</span><input name="fechaFin" type="date" required
+          /></label>
+          <label class="form-field form-field-wide">
+            <span>Motivo</span>
+            <textarea name="motivo" rows="3" maxlength="240"></textarea>
+          </label>
+          <label class="form-active form-field-wide">
+            <input name="activo" type="checkbox" checked /> Aplicar este cambio
+            durante su vigencia
+          </label>
+        </div>
+        <div class="form-actions">
+          <button
+            class="secondary-button"
+            id="cancel-temporary-form"
+            type="button"
+          >
+            Cancelar
+          </button>
+          <button class="primary-button" type="submit">Guardar cambio</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script type="module" src="js/script.js"></script>
+  </body>
+</html>
