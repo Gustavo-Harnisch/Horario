@@ -17,9 +17,16 @@ export function crearSlot(hora, contenido, colores, mostrarHora = true) {
   const nombreCompleto = tema ? `${codigo} ${tema.ramo}` : contenido;
   titulo.textContent = nombreCompleto;
 
+  const contenidoSinSeccion = contenido.replace(
+    /^(\S+)-((?:S|L)\d+)\s+/i,
+    "$1 ",
+  );
+  const seccion = contenido.match(/^\S+-((?:S|L)\d+)\s+/i)?.[1];
   const detalle =
-    tema && contenido.startsWith(nombreCompleto)
-      ? contenido.slice(nombreCompleto.length).trim()
+    tema && contenidoSinSeccion.startsWith(nombreCompleto)
+      ? [seccion, contenidoSinSeccion.slice(nombreCompleto.length).trim()]
+          .filter(Boolean)
+          .join(" ")
       : "";
   const detalleEl = document.createElement("p");
   detalleEl.className = "card-meta";
